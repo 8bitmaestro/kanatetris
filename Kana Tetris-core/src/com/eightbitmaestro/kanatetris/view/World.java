@@ -1,4 +1,3 @@
-/*comment*/
 package com.eightbitmaestro.kanatetris.view;
 
 import java.util.ArrayList;
@@ -30,7 +29,6 @@ import com.eightbitmaestro.kanatetris.model.Selector;
 import com.eightbitmaestro.kanatetris.model.YellowPolygon;
 
 public class World {
-	int[] test;
 	Array<Block> blocks;
 	Block b; Iterator<Block> blockIterator;
 	Array<Block> currentTetromino; //falling, "unlocked" tetromino
