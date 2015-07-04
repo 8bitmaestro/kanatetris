@@ -1,3 +1,4 @@
+/*comment*/
 package com.eightbitmaestro.kanatetris.view;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ import com.eightbitmaestro.kanatetris.model.Selector;
 import com.eightbitmaestro.kanatetris.model.YellowPolygon;
 
 public class World {
+	int[] test;
 	Array<Block> blocks;
 	Block b; Iterator<Block> blockIterator;
 	Array<Block> currentTetromino; //falling, "unlocked" tetromino
@@ -155,6 +157,7 @@ public class World {
 		hiraganaCombinationsToggle = new Rectangle(Gdx.graphics.getWidth()/1.5f, Gdx.graphics.getHeight()/5, standardWidth, standardWidth);
 		katakanaDiacriticsToggle = new Rectangle(Gdx.graphics.getWidth()/3, Gdx.graphics.getHeight()/5, standardWidth, standardWidth);
 		katakanaCombinationsToggle = new Rectangle(Gdx.graphics.getWidth()/1.5f, Gdx.graphics.getHeight()/5, standardWidth, standardWidth);
+		
 
 		
 		//kanaSelector = new KanaSelector(Constants.standardKana);
