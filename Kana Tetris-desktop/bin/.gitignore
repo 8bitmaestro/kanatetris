@@ -1,12 +1,11 @@
+/8bit.mp3
 /check.png
 /circle.png
-/com/
-/cross.png
 /cyanblock.png
 /downarrow.png
 /greenblock.png
 /hiragana.png
-/hiraganatenten/
+/hiraganaTenten/
 /indigoblock.png
 /kana tetris fx hiragana.wav
 /kana tetris fx katakana.wav
@@ -15,9 +14,10 @@
 /kanatetrismenubackground.png
 /kanatetrismenubutton.png
 /katakana.png
-/katakanatenten/
+/katakanaTenten/
 /katakanawhite/
 /mazetheme.mp3
+/mazetheme.wav
 /mode.png
 /orangeblock.png
 /purpleblock.png
@@ -28,3 +28,4 @@
 /start.png
 /x.png
 /yellowblock.png
+/com/

@@ -64,6 +64,7 @@ public class WorldRenderer {
 	public void render(){
 		Gdx.gl20.glClearColor(0, 0, 0, 0);
 		Gdx.gl20.glClear(Gdx.gl20.GL_COLOR_BUFFER_BIT);
+		
 		//uiBatch.begin(); uiBatch.draw(standardKatakanaRegions[44], 10, 20); uiBatch.end(); 
 		//DRAWING MENU
 		selectors = world.getSelectors();
@@ -186,6 +187,8 @@ public class WorldRenderer {
 		boolean tutorHiragana = true;
 		String currentTutorKana = world.getCurrentTutorKana();
 		String currentKana = world.getCurrentKana();
+		float averageX;
+		float averageY;
 		if(world.isKanaEntered()){
 			blockIterator = world.getCurrentTetromino().iterator();
 			while(blockIterator.hasNext()){
@@ -259,11 +262,12 @@ public class WorldRenderer {
 						world.getScoreBox().x*standardWidth+8, world.getScoreBox().y*standardWidth+world.getScoreBox().height*standardWidth*0.75f-standardWidth*3);
 			}
 		}
-		//	if kana ISNT entered... 
+		//	if kana ISNT entered...
+		
 			else{ 
 				//find average vector2 of current tetromino; falling kana will be drawn there
-				float averageX = 0;
-				float averageY = 0;
+				averageX = 0;
+				averageY = 0;
 				for (Block b : world.getCurrentTetromino()){
 					averageX+=b.getPosition().x;
 					averageY+=b.getPosition().y;
@@ -381,6 +385,7 @@ public class WorldRenderer {
 				font.draw(levelBatch, "You have entered: " + world.getEnteredKana(), 
 						world.getScoreBox().x*standardWidth+8, world.getScoreBox().y*standardWidth+world.getScoreBox().height*standardWidth*0.75f);
 				font.draw(levelBatch, "Current kana: ", world.getScoreBox().x*standardWidth+8, world.getScoreBox().y*standardWidth+world.getScoreBox().height*standardWidth*0.75f+standardWidth);
+				font.draw(levelBatch, world.getEnteredKana(), averageX+standardWidth*1.3f, averageY+standardWidth*0.66f);
 				//draw current kana texture in score box
 					//tutor mode, hiragana
 				if (world.tutorMode && currentTutorKana!=null && currentTutorKana.charAt(0)=='h')
