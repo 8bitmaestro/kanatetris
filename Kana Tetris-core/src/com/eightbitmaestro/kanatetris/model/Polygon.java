@@ -24,6 +24,14 @@ public class Polygon {
 		return blocks;
 	}
 	
+	public void setWidth(float width){
+		this.width = width;
+	}
+	
+	public void setHeight(float height){
+		this.height = height;
+	}
+	
 	public void moveBlock(int blockID, int unitsX, int unitsY){
 		blocks.get(blockID).getPosition().x+=(unitsX*width);
 		blocks.get(blockID).getPosition().y+=(unitsY*height);

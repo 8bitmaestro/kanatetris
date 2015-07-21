@@ -37,7 +37,7 @@ public class World {
 	boolean gameOptionsSelected, hiraganaOptionsSelected, katakanaOptionsSelected, tutorMode, endlessMode = true, classicMode;
 	boolean retroFlavor, downtempoFlavor, coolFlavor, musicStarted, kanaSelectorInitialized;
 	boolean hiraganaDiacriticsOn = true, katakanaDiacriticsOn = true, hiraganaCombinationsOn = true, katakanaCombinationsOn = true;
-	boolean hiraganaEnabled = true, katakanaEnabled = false; //these are controlled by the "turn all <kana> on/off" in the menu
+	boolean hiraganaEnabled = true, katakanaEnabled = true; //these are controlled by the "turn all <kana> on/off" in the menu
 	boolean hiraganaDiacriticsEnabled = true, hiraganaCombinationsEnabled = true, katakanaDiacriticsEnabled = true, katakanaCombinationsEnabled = true;
 	boolean soundPlayed = false;
 	MyGdxGame game;
@@ -1111,6 +1111,13 @@ public class World {
 	}
 	public Rectangle getHiraganaComboToggle(){
 		return hiraganaCombinationsToggle;
+	}
+	
+	public Rectangle getKatakanaDiaToggle(){
+		return katakanaDiacriticsToggle;
+	}
+	public Rectangle getKatakanaComboToggle(){
+		return katakanaCombinationsToggle;
 	}
 
 	MenuText[] menuTextArray = new MenuText[4];

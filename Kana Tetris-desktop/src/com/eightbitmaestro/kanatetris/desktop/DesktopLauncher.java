@@ -12,6 +12,9 @@ public class DesktopLauncher {
 //		config.height = 960;
 		config.width = 640;
 		config.height = 480;
+//		config.width=980;
+//		config.height=720;
+		config.resizable=false;
 		new LwjglApplication(new MyGdxGame(), config);
 	}
 }

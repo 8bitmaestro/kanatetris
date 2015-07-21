@@ -60,10 +60,15 @@ public class WorldRenderer {
 		loadTextures();
 	}
 	
+	
 	boolean hiragana; //used to decide whether to draw katakana or hiragana
 	public void render(){
 		Gdx.gl20.glClearColor(0, 0, 0, 0);
 		Gdx.gl20.glClear(Gdx.gl20.GL_COLOR_BUFFER_BIT);
+		
+		tetrisUnit = Gdx.graphics.getWidth()/10;
+		standardWidth = Gdx.graphics.getWidth()*0.1f;
+		halfWidth = Gdx.graphics.getWidth()*0.05f;
 		
 		//uiBatch.begin(); uiBatch.draw(standardKatakanaRegions[44], 10, 20); uiBatch.end(); 
 		//DRAWING MENU
@@ -93,8 +98,12 @@ public class WorldRenderer {
 				}
 				uiBatch.draw(rightArrow, world.getAllRowsAndColumnsBox().x, world.getAllRowsAndColumnsBox().y);
 				uiBatch.draw(downArrow, world.getAllRowsAndColumnsBox().x, world.getAllRowsAndColumnsBox().y);
-				uiBatch.draw(menu, world.getHiraganaDiaToggle().x, world.getHiraganaDiaToggle().y, world.getHiraganaDiaToggle().width, world.getHiraganaDiaToggle().height);
-				uiBatch.draw(menu, world.getHiraganaComboToggle().x, world.getHiraganaComboToggle().y, world.getHiraganaComboToggle().width, world.getHiraganaComboToggle().height);
+				uiBatch.draw(diacriticsText, world.getHiraganaDiaToggle().x-world.getHiraganaDiaToggle().width, world.getHiraganaDiaToggle().y, world.getHiraganaDiaToggle().width, world.getHiraganaDiaToggle().height);
+				if (world.hiraganaDiacriticsEnabled) uiBatch.draw(toggleOnText, world.getHiraganaDiaToggle().x, world.getHiraganaDiaToggle().y, world.getHiraganaDiaToggle().width, world.getHiraganaDiaToggle().height);
+				else uiBatch.draw(toggleOffText, world.getHiraganaDiaToggle().x, world.getHiraganaDiaToggle().y, world.getHiraganaDiaToggle().width, world.getHiraganaDiaToggle().height);
+				uiBatch.draw(combinationText, world.getHiraganaComboToggle().x-world.getHiraganaComboToggle().width, world.getHiraganaComboToggle().y, world.getHiraganaComboToggle().width, world.getHiraganaComboToggle().height);
+				if (world.hiraganaCombinationsEnabled) uiBatch.draw(toggleOnText, world.getHiraganaComboToggle().x, world.getHiraganaComboToggle().y, world.getHiraganaComboToggle().width, world.getHiraganaComboToggle().height);
+				else uiBatch.draw(toggleOffText, world.getHiraganaComboToggle().x, world.getHiraganaComboToggle().y, world.getHiraganaComboToggle().width, world.getHiraganaComboToggle().height);
 				uiBatch.end();
 				return;
 			}
@@ -118,6 +127,12 @@ public class WorldRenderer {
 				}
 				uiBatch.draw(rightArrow, world.getAllRowsAndColumnsBox().x, world.getAllRowsAndColumnsBox().y);
 				uiBatch.draw(downArrow, world.getAllRowsAndColumnsBox().x, world.getAllRowsAndColumnsBox().y);
+				uiBatch.draw(diacriticsText, world.getKatakanaDiaToggle().x-world.getKatakanaDiaToggle().width, world.getKatakanaDiaToggle().y, world.getKatakanaDiaToggle().width, world.getKatakanaDiaToggle().height);
+				if (world.katakanaDiacriticsEnabled) uiBatch.draw(toggleOnText, world.getKatakanaDiaToggle().x, world.getKatakanaDiaToggle().y, world.getKatakanaDiaToggle().width, world.getKatakanaDiaToggle().height);
+				else uiBatch.draw(toggleOffText, world.getKatakanaDiaToggle().x, world.getKatakanaDiaToggle().y, world.getKatakanaDiaToggle().width, world.getKatakanaDiaToggle().height);
+				uiBatch.draw(combinationText, world.getKatakanaComboToggle().x-world.getKatakanaComboToggle().width, world.getKatakanaComboToggle().y, world.getKatakanaComboToggle().width, world.getKatakanaComboToggle().height);
+				if (world.katakanaCombinationsEnabled) uiBatch.draw(toggleOnText, world.getKatakanaComboToggle().x, world.getKatakanaComboToggle().y, world.getKatakanaComboToggle().width, world.getKatakanaComboToggle().height);
+				else uiBatch.draw(toggleOffText, world.getKatakanaComboToggle().x, world.getKatakanaComboToggle().y, world.getKatakanaComboToggle().width, world.getKatakanaComboToggle().height);
 				uiBatch.end();
 				return;
 			}
@@ -161,7 +176,8 @@ public class WorldRenderer {
 			b = blockIterator.next();
 			if(b.shouldBeRemoved()) clearedBlocks++;
 			if (b.getColor().equals("cyan")){
-				levelBatch.draw(cyan, b.getPosition().x, b.getPosition().y, standardWidth, standardWidth);
+				levelBatch.draw(cyan, b.getPosition().x, 
+						b.getSimplifiedPosition()*tetrisUnit, standardWidth, standardWidth);
 			}
 			else if (b.getColor().equals("green")){
 				levelBatch.draw(green, b.getPosition().x, b.getPosition().y, standardWidth,standardWidth);
@@ -582,7 +598,9 @@ public class WorldRenderer {
 	}
 	
 	Texture cyan, green, indigo, orange, purple, red, yellow, field, standardHiragana, menu, menuButton,
-				circle, cross, rightArrow, downArrow, hiraganaText, katakanaText, startText, modeText;
+				circle, cross, rightArrow, downArrow, hiraganaText, katakanaText, startText, modeText, 
+				katakanaToggleText, hiraganaToggleText, toggleOnText, toggleOffText, diacriticsText, 
+				combinationText;
 	TextureRegion[] standardHiraganaRegions = new TextureRegion[46];
 	Texture[] standardKatakana = new Texture[46];
 	TextureRegion[] standardKatakanaRegions = new TextureRegion[46]; //debug, testing
@@ -609,11 +627,11 @@ public class WorldRenderer {
 		menuButton.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		circle = new Texture("circle.png");
 		circle.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-		cross = new Texture("x.png");
+		cross = new Texture("cross.png");
 		cross.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-		rightArrow = new Texture("rightarrow.png");
+		rightArrow = new Texture("rightArrow.png");
 		rightArrow.setFilter(TextureFilter.Nearest,  TextureFilter.Nearest);
-		downArrow = new Texture("downarrow.png");
+		downArrow = new Texture("downArrow.png");
 		downArrow.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		hiraganaText = new Texture("hiragana.png");
 		hiraganaText.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
@@ -623,6 +641,18 @@ public class WorldRenderer {
 		startText.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		modeText = new Texture("mode.png");
 		modeText.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		katakanaToggleText = new Texture("katakanaText.png");
+		katakanaToggleText.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		hiraganaToggleText = new Texture("hiraganaText.png");
+		hiraganaToggleText.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		toggleOnText = new Texture("onText.png");
+		toggleOnText.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		toggleOffText = new Texture("offText.png");
+		toggleOffText.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		diacriticsText = new Texture("diacriticstext.png");
+		diacriticsText.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		combinationText = new Texture("combinationtext.png");
+		combinationText.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		//standard hiragana textures
 		standardHiragana = new Texture("standardhiragana.png");
