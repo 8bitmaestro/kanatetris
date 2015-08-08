@@ -372,7 +372,7 @@ public class WorldRenderer {
 					levelBatch.draw(standardHiraganaRegions[indexToDraw], averageX, averageY, standardWidth, standardWidth);
 					if (dakuten)
 						font.draw(levelBatch, "\"", averageX+standardWidth, averageY+standardWidth);
-					if (combination){
+					if (combination){ 
 						levelBatch.draw(standardHiraganaRegions[indexToDraw], averageX+standardWidth, averageY+standardWidth, standardWidth/2, standardWidth/2);
 					}
 				}
