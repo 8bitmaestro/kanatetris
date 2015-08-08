@@ -150,6 +150,13 @@ public class WorldRenderer {
 				if (count==3) uiBatch.draw(startText, menuTextArray[count].getPosition().x, r.getY()-verticalOffset, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
 				count++;
 			}
+			//draw colored lines
+			//uiBatch.draw(redLineTexture, world.getColoredLines().get(0).x, world.getColoredLines().get(0).y, world.getColoredLines().get(0).width, world.getColoredLines().get(0).height);
+			uiBatch.draw(redLineTexture, world.getColoredLines().get(0).x, world.getColoredLines().get(0).y, world.getColoredLines().get(0).width, world.getColoredLines().get(0).height);
+			uiBatch.draw(yellowLineTexture, world.getColoredLines().get(1).x, world.getColoredLines().get(1).y, world.getColoredLines().get(1).width, world.getColoredLines().get(1).height);
+			uiBatch.draw(greenLineTexture, world.getColoredLines().get(2).x, world.getColoredLines().get(2).y, world.getColoredLines().get(2).width, world.getColoredLines().get(2).height);
+			uiBatch.draw(blueLineTexture, world.getColoredLines().get(3).x, world.getColoredLines().get(3).y, world.getColoredLines().get(3).width, world.getColoredLines().get(3).height);
+			
 			for(Selector s : selectors){
 //				uiBatch.setColor(1,1,1,s.getCircleAlpha());
 //				uiBatch.draw(circle, s.getCirclePosition().x, s.getCirclePosition().y, standardWidth, standardWidth);
@@ -309,21 +316,21 @@ public class WorldRenderer {
 				//find index of current hiragana
 				int indexToDraw = 0;
 				int subIndexToDraw = 0; //this is used for the small kana in a combo
-				if (hiragana && !dakuten && !combination){
+				if (/*hiragana &&*/ !dakuten && !combination){
 					for (int i =0; i < standardHiraganaRegions.length-1; i++){
 						if (currentKana!=null && Constants.standardKana[i].equals(currentKana.substring(2, currentKana.length())))
 							indexToDraw = i;
 					}
 				}
 				//if dakuten, find index of current dakuten hiragana
-				else if (hiragana && dakuten && !combination){
+				else if (/*hiragana &&*/ dakuten && !combination){
 					for (int i =0; i < standardHiraganaRegions.length-1; i++){
 						if (currentKana!=null && Constants.standardKana[i].equals(currentKana.substring(2, currentKana.length()-1)))
 							indexToDraw = i;
 					}
 				}
 				//if combination, find indices of current combination
-				else if (hiragana && !dakuten && combination){
+				else if (/*hiragana && */!dakuten && combination){
 					for (int i =0; i < standardHiraganaRegions.length-1; i++){
 						System.out.println("Checking to see which kana matches " + currentKana.substring(2, currentKana.indexOf("-")));
 						if (currentKana!=null && Constants.standardKana[i].equals(currentKana.substring(2, currentKana.indexOf("-"))))
@@ -336,7 +343,7 @@ public class WorldRenderer {
 					}
 				}
 				//if dakuten AND combination, find indices
-				else if (hiragana && dakuten && combination){
+				else if (/*hiragana &&*/ dakuten && combination){
 					for (int i =0; i < standardHiraganaRegions.length-1; i++){
 						System.out.println("Checking to see which kana matches " + currentKana.substring(2, currentKana.indexOf("-")-2));
 						if (currentKana!=null && Constants.standardKana[i].equals(currentKana.substring(2, currentKana.indexOf("-")-2)))
@@ -600,7 +607,7 @@ public class WorldRenderer {
 	Texture cyan, green, indigo, orange, purple, red, yellow, field, standardHiragana, menu, menuButton,
 				circle, cross, rightArrow, downArrow, hiraganaText, katakanaText, startText, modeText, 
 				katakanaToggleText, hiraganaToggleText, toggleOnText, toggleOffText, diacriticsText, 
-				combinationText;
+				combinationText, redLineTexture, greenLineTexture, blueLineTexture, yellowLineTexture;
 	TextureRegion[] standardHiraganaRegions = new TextureRegion[46];
 	Texture[] standardKatakana = new Texture[46];
 	TextureRegion[] standardKatakanaRegions = new TextureRegion[46]; //debug, testing
@@ -653,6 +660,14 @@ public class WorldRenderer {
 		diacriticsText.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		combinationText = new Texture("combinationtext.png");
 		combinationText.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		redLineTexture = new Texture("redline.png");
+		redLineTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		blueLineTexture = new Texture("blueline.png");
+		blueLineTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		greenLineTexture = new Texture("greenline.png");
+		greenLineTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		yellowLineTexture = new Texture("yellowline.png");
+		yellowLineTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		//standard hiragana textures
 		standardHiragana = new Texture("standardhiragana.png");

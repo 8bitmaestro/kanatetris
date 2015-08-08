@@ -53,6 +53,7 @@ public class World {
 				mouse, mouseMoved;
 	Array<Rectangle> collisionBoxes; //collision boxes on the field only, not on blocks
 	Array<Rectangle> menuButtons;
+	Array<Rectangle> coloredLines; //these are for the positions of the colored lines on the Main Menu
 	Rectangle hiraganaToggle, katakanaToggle; //mouse collision boxes for toggling hiragana and katakana
 	Rectangle hiraganaDiacriticsToggle, hiraganaCombinationsToggle, katakanaDiacriticsToggle, katakanaCombinationsToggle;
 	Rectangle r; Iterator<Rectangle> collisionBoxesIterator;
@@ -128,6 +129,19 @@ public class World {
 			menuButtons.add(new Rectangle(Gdx.graphics.getWidth()*.25f*i-Gdx.graphics.getWidth()*0.1f,Gdx.graphics.getHeight()/4,standardWidth*2,standardWidth));
 			
 		}
+		coloredLines = new Array<Rectangle>();
+		Rectangle redLineLeft = new Rectangle(menuButtons.get(3).x-Gdx.graphics.getWidth(),
+				menuButtons.get(3).y+menuButtons.get(3).height, Gdx.graphics.getWidth(), tetrisUnit/10);
+		Rectangle yellowLineLeft =new Rectangle(menuButtons.get(1).x-Gdx.graphics.getWidth(),
+				menuButtons.get(1).y+menuButtons.get(1).height, Gdx.graphics.getWidth(), tetrisUnit/10);
+		Rectangle greenLineLeft = new Rectangle(menuButtons.get(2).x-Gdx.graphics.getWidth(),
+				menuButtons.get(2).y+menuButtons.get(2).height, Gdx.graphics.getWidth(), tetrisUnit/10);
+		Rectangle blueLineLeft = new Rectangle(menuButtons.get(0).x-Gdx.graphics.getWidth(),
+				menuButtons.get(0).y+menuButtons.get(0).height, Gdx.graphics.getWidth(), tetrisUnit/10);
+		coloredLines.add(redLineLeft);
+		coloredLines.add(yellowLineLeft);
+		coloredLines.add(blueLineLeft);
+		coloredLines.add(greenLineLeft);
 		tutorModeBox = menuButtons.get(4);
 		endlessModeBox = menuButtons.get(5);
 		classicModeBox = menuButtons.get(6);
@@ -328,6 +342,10 @@ public class World {
 				startMenuText.startMovingLeft();
 				
 			}
+			coloredLines.get(0).x = startMenuText.getPosition().x-Gdx.graphics.getWidth();
+			coloredLines.get(1).x = hiraganaMenuText.getPosition().x-Gdx.graphics.getWidth();
+			coloredLines.get(2).x = modeMenuText.getPosition().x-Gdx.graphics.getWidth();
+			coloredLines.get(3).x = katakanaMenuText.getPosition().x-Gdx.graphics.getWidth();
 			
 			modeMenuText.update();
 			hiraganaMenuText.update();
@@ -1146,6 +1164,10 @@ public class World {
 		if (sound.equals("mode")){
 			modeSound.play(1);
 		}
+	}
+	
+	public Array<Rectangle> getColoredLines(){
+		return coloredLines;
 	}
 
 	
