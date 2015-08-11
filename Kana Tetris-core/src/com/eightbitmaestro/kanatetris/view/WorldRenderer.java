@@ -375,7 +375,7 @@ public class WorldRenderer {
 					if (dakuten)
 						font.draw(levelBatch, "\"", averageX+standardWidth, averageY+standardWidth);
 					if (combination){ 
-						levelBatch.draw(standardHiraganaRegions[subIndexToDraw], averageX+standardWidth, averageY+standardWidth, standardWidth/2, standardWidth/2);
+						levelBatch.draw(standardHiraganaRegions[subIndexToDraw], averageX+standardWidth, averageY, standardWidth/2, standardWidth/2);
 					}
 				}
 					//katakana
@@ -384,7 +384,7 @@ public class WorldRenderer {
 					if (dakuten)
 						font.draw(levelBatch, "\"", averageX+standardWidth, averageY+standardWidth);
 					if (combination){
-						levelBatch.draw(standardKatakanaRegions[subIndexToDraw], averageX+standardWidth, averageY+standardWidth, standardWidth/2, standardWidth/2);
+						levelBatch.draw(standardKatakanaRegions[subIndexToDraw], averageX+standardWidth, averageY, standardWidth/2, standardWidth/2);
 					}
 				}
 				//draw kana on stage (tutor mode)
@@ -410,7 +410,8 @@ public class WorldRenderer {
 				font.draw(levelBatch, "You have entered: " + world.getEnteredKana(), 
 						world.getScoreBox().x*standardWidth+8, world.getScoreBox().y*standardWidth+world.getScoreBox().height*standardWidth*0.75f);
 				font.draw(levelBatch, "Current kana: ", world.getScoreBox().x*standardWidth+8, world.getScoreBox().y*standardWidth+world.getScoreBox().height*standardWidth*0.75f+standardWidth);
-				font.draw(levelBatch, world.getEnteredKana(), averageX+standardWidth*1.3f, averageY+standardWidth*0.66f);
+				if (!combination) font.draw(levelBatch, world.getEnteredKana(), averageX+standardWidth*1.3f, averageY+standardWidth*0.66f);
+				else font.draw(levelBatch, world.getEnteredKana(), averageX+standardWidth*1.6f, averageY+standardWidth*0.66f);
 				//draw current kana texture in score box
 					//tutor mode, hiragana
 				if (world.tutorMode && currentTutorKana!=null && currentTutorKana.charAt(0)=='h')
