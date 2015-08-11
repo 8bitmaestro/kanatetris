@@ -584,6 +584,10 @@ public class World {
 							System.out.println("Adding diacritic kana!!!!!");
 							selectedKana.add(getDiacritic(k.getKana())); 
 						}
+						if (hiraganaCombinationsEnabled && hasCombination(k.getKana())){
+							System.out.println("Adding combination kana!");
+							addCombinations(selectedKana, k.getKana(), hiraganaDiacriticsEnabled, true);
+						}
 					}
 				}
 				if (katakanaEnabled) for (KanaMenuElement k : standardKatakanaElements){
@@ -594,6 +598,10 @@ public class World {
 							System.out.println("Adding diacritic kana!!!!!");
 							selectedKana.add(getDiacritic(k.getKana()));
 						}
+						if (katakanaCombinationsEnabled && hasCombination(k.getKana())){
+							addCombinations(selectedKana, k.getKana(), katakanaDiacriticsOn, false);
+						}
+						
 					}
 				}
 				kanaSelector = new KanaSelector(selectedKana);
@@ -906,6 +914,17 @@ public class World {
 			if (currentKana.contains("tsu")) currentKanaConverted = currentKana.replace("tsu", "zu").replace("\"","");
 			//TODO p kana
 		}
+		System.out.println(currentKanaConverted.contains("chi"));
+		if (currentKana.contains("-")){
+			if (currentKanaConverted.contains("shi") || currentKanaConverted.contains("chi") || currentKana.contains("ji")){
+				System.out.println("removing y from " + currentKanaConverted);
+				currentKanaConverted = currentKanaConverted.replace("y", "");
+				System.out.println("CurrentKanaconverted is now " + currentKanaConverted);
+			}
+			currentKanaConverted = currentKanaConverted.replace("i-","");
+			System.out.println("currentKanaConverted is: " + currentKanaConverted);
+			System.out.println("check kana algorithm is looking at " + currentKanaConverted.substring(2, currentKanaConverted.length()));
+		}
 		if (enteredKana.equals(currentKanaConverted.substring(2, currentKanaConverted.length()))){
 			kanaEntered = true;
 			enteredKana = "";
@@ -1116,12 +1135,75 @@ public class World {
 		return kana.replace(".h",".p");
 	}
 	
+	public void addCombinations(ArrayList<String> selectedKana, String kana, boolean diacriticsOn, boolean hiragana){
+		String prefix = "";
+		if (hiragana) prefix = "h.";
+		else prefix = "k.";
+		if (kana.contains("ki")){
+			selectedKana.add(prefix+"ki-yo");
+			selectedKana.add(prefix+"ki-yu");
+			selectedKana.add(prefix+"ki-ya");
+			if (diacriticsOn){
+				selectedKana.add(prefix+"ki\"-yo");
+				selectedKana.add(prefix+"ki\"-yu");
+				selectedKana.add(prefix+"ki\"-ya");
+			}
+		}
+		if (kana.contains("shi")){
+			selectedKana.add(prefix+"shi-yo");
+			selectedKana.add(prefix+"shi-ya");
+			selectedKana.add(prefix+"shi-yu");
+		}
+		if (kana.contains("chi")){
+			selectedKana.add(prefix+"chi-yo");
+			selectedKana.add(prefix+"chi-ya");
+			selectedKana.add(prefix+"chi-yu");
+		}
+		if (kana.contains("ni")){
+			selectedKana.add(prefix+"ni-yo");
+			selectedKana.add(prefix+"ni-ya");
+			selectedKana.add(prefix+"ni-yu");
+		}
+		if (kana.contains("ni")){
+			selectedKana.add(prefix+"ni-yo");
+			selectedKana.add(prefix+"ni-ya");
+			selectedKana.add(prefix+"ni-yu");
+		}
+		if ((!kana.contains("chi") && kana.contains("hi"))){
+			selectedKana.add(prefix+"hi-yo");
+			selectedKana.add(prefix+"hi-ya");
+			selectedKana.add(prefix+"hi-yu");
+			if (diacriticsOn){
+				selectedKana.add(prefix+"hi\"-yo");
+				selectedKana.add(prefix+"hi\"-yu");
+				selectedKana.add(prefix+"hi\"-ya");
+			}
+		}
+		if (kana.contains("ni")){
+			selectedKana.add(prefix+"ni-yo");
+			selectedKana.add(prefix+"ni-ya");
+			selectedKana.add(prefix+"ni-yu");
+		}
+		if (kana.contains("ri")){
+			selectedKana.add(prefix+"ri-yo");
+			selectedKana.add(prefix+"ri-ya");
+			selectedKana.add(prefix+"ri-yu");
+		}
+	}
+	
+	
 	//returns true if kana has a diacritic counterpart
 	public boolean hasDiacritic(String kana){
 //		System.out.println("checking if has diacritic");
 //		System.out.println("kana.charAt(2)=="+kana.charAt(2));
 		return (kana.charAt(2)=='k' || kana.charAt(2)=='s' || kana.contains("chi") || kana.contains("shi") 
 				|| kana.contains("tsu") || kana.charAt(2)=='t' || kana.charAt(2) == 'h');
+	}
+	
+	//returns true if kana has a combination
+	public boolean hasCombination(String kana){
+		return (kana.charAt(2)=='k' || kana.charAt(2)=='h' || kana.contains("chi") || kana.contains("shi") 
+				|| kana.charAt(2)=='r' || kana.charAt(2)=='n' || kana.charAt(2) == 'h');
 	}
 	
 	public Rectangle getHiraganaDiaToggle(){

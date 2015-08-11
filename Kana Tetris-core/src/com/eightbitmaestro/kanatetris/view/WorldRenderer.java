@@ -316,6 +316,7 @@ public class WorldRenderer {
 				//find index of current hiragana
 				int indexToDraw = 0;
 				int subIndexToDraw = 0; //this is used for the small kana in a combo
+				//System.out.println(combination);
 				if (/*hiragana &&*/ !dakuten && !combination){
 					for (int i =0; i < standardHiraganaRegions.length-1; i++){
 						if (currentKana!=null && Constants.standardKana[i].equals(currentKana.substring(2, currentKana.length())))
@@ -332,26 +333,26 @@ public class WorldRenderer {
 				//if combination, find indices of current combination
 				else if (/*hiragana && */!dakuten && combination){
 					for (int i =0; i < standardHiraganaRegions.length-1; i++){
-						System.out.println("Checking to see which kana matches " + currentKana.substring(2, currentKana.indexOf("-")));
+						//System.out.println("(1)Checking to see which kana matches " + currentKana.substring(0, currentKana.indexOf("-")));
 						if (currentKana!=null && Constants.standardKana[i].equals(currentKana.substring(2, currentKana.indexOf("-"))))
 							indexToDraw = i;
 					}
 					for (int i =0; i < standardHiraganaRegions.length-1; i++){
-						System.out.println("[sub]Checking to see which kana matches " + currentKana.substring(currentKana.indexOf("-"), currentKana.length()-1));
-						if (currentKana!=null && Constants.standardKana[i].equals(currentKana.substring(currentKana.indexOf("-"), currentKana.length()-1)))
+						//System.out.println("(1)[sub]Checking to see which kana matches " + currentKana.substring(currentKana.indexOf("-")+1, currentKana.length()));
+						if (currentKana!=null && Constants.standardKana[i].equals(currentKana.substring(currentKana.indexOf("-")+1, currentKana.length())))
 							subIndexToDraw = i;
 					}
 				}
 				//if dakuten AND combination, find indices
 				else if (/*hiragana &&*/ dakuten && combination){
 					for (int i =0; i < standardHiraganaRegions.length-1; i++){
-						System.out.println("Checking to see which kana matches " + currentKana.substring(2, currentKana.indexOf("-")-2));
-						if (currentKana!=null && Constants.standardKana[i].equals(currentKana.substring(2, currentKana.indexOf("-")-2)))
+						//System.out.println("(2)Checking to see which kana matches " + currentKana.substring(2, currentKana.indexOf("-")-1));
+						if (currentKana!=null && Constants.standardKana[i].equals(currentKana.substring(2, currentKana.indexOf("-")-1)))
 							indexToDraw = i;
 					}
 					for (int i =0; i < standardHiraganaRegions.length-1; i++){
-						System.out.println("[sub]Checking to see which kana matches " + currentKana.substring(currentKana.indexOf("-"), currentKana.length()-1));
-						if (currentKana!=null && Constants.standardKana[i].equals(currentKana.substring(currentKana.indexOf("-"), currentKana.length()-1)))
+						//System.out.println("(2)[sub]Checking to see which kana matches " + currentKana.substring(currentKana.indexOf("-")+1, currentKana.length()));
+						if (currentKana!=null && Constants.standardKana[i].equals(currentKana.substring(currentKana.indexOf("-")+1, currentKana.length())))
 							subIndexToDraw = i;
 					}
 				}
@@ -366,6 +367,7 @@ public class WorldRenderer {
 							tutorIndexToDraw = i;
 						tutorHiragana = false;
 					}
+				if (currentKana!=null && currentKana.contains("k.")){hiragana = false;}
 				//draw kana on stage (endless & classic mode)
 					//hiragana
 				if (!world.tutorMode && currentKana!=null && hiragana){
@@ -373,7 +375,7 @@ public class WorldRenderer {
 					if (dakuten)
 						font.draw(levelBatch, "\"", averageX+standardWidth, averageY+standardWidth);
 					if (combination){ 
-						levelBatch.draw(standardHiraganaRegions[indexToDraw], averageX+standardWidth, averageY+standardWidth, standardWidth/2, standardWidth/2);
+						levelBatch.draw(standardHiraganaRegions[subIndexToDraw], averageX+standardWidth, averageY+standardWidth, standardWidth/2, standardWidth/2);
 					}
 				}
 					//katakana
@@ -382,7 +384,7 @@ public class WorldRenderer {
 					if (dakuten)
 						font.draw(levelBatch, "\"", averageX+standardWidth, averageY+standardWidth);
 					if (combination){
-						levelBatch.draw(standardKatakanaRegions[indexToDraw], averageX+standardWidth, averageY+standardWidth, standardWidth/2, standardWidth/2);
+						levelBatch.draw(standardKatakanaRegions[subIndexToDraw], averageX+standardWidth, averageY+standardWidth, standardWidth/2, standardWidth/2);
 					}
 				}
 				//draw kana on stage (tutor mode)
