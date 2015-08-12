@@ -98,12 +98,12 @@ public class WorldRenderer {
 				}
 				uiBatch.draw(rightArrow, world.getAllRowsAndColumnsBox().x, world.getAllRowsAndColumnsBox().y);
 				uiBatch.draw(downArrow, world.getAllRowsAndColumnsBox().x, world.getAllRowsAndColumnsBox().y);
-				uiBatch.draw(diacriticsText, world.getHiraganaDiaToggle().x-world.getHiraganaDiaToggle().width, world.getHiraganaDiaToggle().y, world.getHiraganaDiaToggle().width, world.getHiraganaDiaToggle().height);
-				if (world.hiraganaDiacriticsEnabled) uiBatch.draw(toggleOnText, world.getHiraganaDiaToggle().x, world.getHiraganaDiaToggle().y, world.getHiraganaDiaToggle().width, world.getHiraganaDiaToggle().height);
-				else uiBatch.draw(toggleOffText, world.getHiraganaDiaToggle().x, world.getHiraganaDiaToggle().y, world.getHiraganaDiaToggle().width, world.getHiraganaDiaToggle().height);
-				uiBatch.draw(combinationText, world.getHiraganaComboToggle().x-world.getHiraganaComboToggle().width, world.getHiraganaComboToggle().y, world.getHiraganaComboToggle().width, world.getHiraganaComboToggle().height);
-				if (world.hiraganaCombinationsEnabled) uiBatch.draw(toggleOnText, world.getHiraganaComboToggle().x, world.getHiraganaComboToggle().y, world.getHiraganaComboToggle().width, world.getHiraganaComboToggle().height);
-				else uiBatch.draw(toggleOffText, world.getHiraganaComboToggle().x, world.getHiraganaComboToggle().y, world.getHiraganaComboToggle().width, world.getHiraganaComboToggle().height);
+				uiBatch.draw(diacriticsText, world.getHiraganaDiaToggle().x-world.getHiraganaDiaToggle().width*1.5f, world.getHiraganaDiaToggle().y-world.getHiraganaDiaToggle().height*0.55f, world.getHiraganaDiaToggle().width*2, world.getHiraganaDiaToggle().height*2);
+				if (world.hiraganaDiacriticsEnabled) uiBatch.draw(toggleOnText, world.getHiraganaDiaToggle().x, world.getHiraganaDiaToggle().y-world.getHiraganaDiaToggle().height/2, world.getHiraganaDiaToggle().width*2, world.getHiraganaDiaToggle().height*2);
+				else uiBatch.draw(toggleOffText, world.getHiraganaDiaToggle().x, world.getHiraganaDiaToggle().y-world.getHiraganaDiaToggle().height/2, world.getHiraganaDiaToggle().width*2, world.getHiraganaDiaToggle().height*2);
+				uiBatch.draw(combinationText, world.getHiraganaComboToggle().x-world.getHiraganaComboToggle().width*2f, world.getHiraganaComboToggle().y-world.getHiraganaComboToggle().height*0.55f, world.getHiraganaComboToggle().width*2, world.getHiraganaComboToggle().height*2);
+				if (world.hiraganaCombinationsEnabled) uiBatch.draw(toggleOnText, world.getHiraganaComboToggle().x, world.getHiraganaComboToggle().y-world.getHiraganaComboToggle().height/2, world.getHiraganaComboToggle().width*2, world.getHiraganaComboToggle().height*2);
+				else uiBatch.draw(toggleOffText, world.getHiraganaComboToggle().x, world.getHiraganaComboToggle().y-world.getHiraganaComboToggle().height/2, world.getHiraganaComboToggle().width*2, world.getHiraganaComboToggle().height*2);
 				uiBatch.end();
 				return;
 			}
@@ -127,12 +127,12 @@ public class WorldRenderer {
 				}
 				uiBatch.draw(rightArrow, world.getAllRowsAndColumnsBox().x, world.getAllRowsAndColumnsBox().y);
 				uiBatch.draw(downArrow, world.getAllRowsAndColumnsBox().x, world.getAllRowsAndColumnsBox().y);
-				uiBatch.draw(diacriticsText, world.getKatakanaDiaToggle().x-world.getKatakanaDiaToggle().width, world.getKatakanaDiaToggle().y, world.getKatakanaDiaToggle().width, world.getKatakanaDiaToggle().height);
-				if (world.katakanaDiacriticsEnabled) uiBatch.draw(toggleOnText, world.getKatakanaDiaToggle().x, world.getKatakanaDiaToggle().y, world.getKatakanaDiaToggle().width, world.getKatakanaDiaToggle().height);
-				else uiBatch.draw(toggleOffText, world.getKatakanaDiaToggle().x, world.getKatakanaDiaToggle().y, world.getKatakanaDiaToggle().width, world.getKatakanaDiaToggle().height);
-				uiBatch.draw(combinationText, world.getKatakanaComboToggle().x-world.getKatakanaComboToggle().width, world.getKatakanaComboToggle().y, world.getKatakanaComboToggle().width, world.getKatakanaComboToggle().height);
-				if (world.katakanaCombinationsEnabled) uiBatch.draw(toggleOnText, world.getKatakanaComboToggle().x, world.getKatakanaComboToggle().y, world.getKatakanaComboToggle().width, world.getKatakanaComboToggle().height);
-				else uiBatch.draw(toggleOffText, world.getKatakanaComboToggle().x, world.getKatakanaComboToggle().y, world.getKatakanaComboToggle().width, world.getKatakanaComboToggle().height);
+				uiBatch.draw(diacriticsText, world.getKatakanaDiaToggle().x-world.getKatakanaDiaToggle().width*1.5f, world.getKatakanaDiaToggle().y-world.getKatakanaDiaToggle().height*0.55f, world.getKatakanaDiaToggle().width*2, world.getKatakanaDiaToggle().height*2);
+				if (world.katakanaDiacriticsEnabled) uiBatch.draw(toggleOnText, world.getKatakanaDiaToggle().x, world.getKatakanaDiaToggle().y-world.getKatakanaDiaToggle().height/2, world.getKatakanaDiaToggle().width*2, world.getKatakanaDiaToggle().height*2);
+				else uiBatch.draw(toggleOffText, world.getKatakanaDiaToggle().x, world.getKatakanaDiaToggle().y-world.getKatakanaDiaToggle().height/2, world.getKatakanaDiaToggle().width*2, world.getKatakanaDiaToggle().height*2);
+				uiBatch.draw(combinationText, world.getKatakanaComboToggle().x-world.getKatakanaComboToggle().width*2f, world.getKatakanaComboToggle().y-world.getKatakanaComboToggle().height*0.55f, world.getKatakanaComboToggle().width*2, world.getKatakanaComboToggle().height*2);
+				if (world.katakanaCombinationsEnabled) uiBatch.draw(toggleOnText, world.getKatakanaComboToggle().x, world.getKatakanaComboToggle().y-world.getKatakanaComboToggle().height/2, world.getKatakanaComboToggle().width*2, world.getKatakanaComboToggle().height*2);
+				else uiBatch.draw(toggleOffText, world.getKatakanaComboToggle().x, world.getKatakanaComboToggle().y-world.getKatakanaComboToggle().height/2, world.getKatakanaComboToggle().width*2, world.getKatakanaComboToggle().height*2);
 				uiBatch.end();
 				return;
 			}
