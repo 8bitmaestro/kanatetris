@@ -318,7 +318,7 @@ public class WorldRenderer {
 				int subIndexToDraw = 0; //this is used for the small kana in a combo
 				//System.out.println(combination);
 				if (/*hiragana &&*/ !dakuten && !combination){
-					for (int i =0; i < standardHiraganaRegions.length-1; i++){
+					for (int i =0; i < standardHiraganaRegions.length; i++){
 						if (currentKana!=null && Constants.standardKana[i].equals(currentKana.substring(2, currentKana.length())))
 							indexToDraw = i;
 					}
