@@ -35,6 +35,7 @@ public class Polygon {
 	public void moveBlock(int blockID, int unitsX, int unitsY){
 		blocks.get(blockID).getPosition().x+=(unitsX*width);
 		blocks.get(blockID).getPosition().y+=(unitsY*height);
+		blocks.get(blockID).updateBounds();
 	}
 	
 	public void rotateClockwise(){};

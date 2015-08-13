@@ -38,7 +38,24 @@ public class PurplePolygon extends Polygon{
 
 	@Override
 	public void rotateCounterClockwise() {
-		// TODO Auto-generated method stub
+		if(rotation==1){
+			moveBlock(3,-1,1);
+			rotation=0;
+		}
+		else if(rotation==2){
+			moveBlock(2,1,1);
+			rotation=1;
+		}
+		else if(rotation==3){
+			moveBlock(1,1,-1);
+			rotation=2;
+		}
+		else if(rotation==0){
+			moveBlock(3,1,-1);
+			moveBlock(2,-1,-1);
+			moveBlock(1,-1,1);
+			rotation=3;
+		}
 		
 	}
 

@@ -886,10 +886,30 @@ public class World {
 	
 	public void rotateClockwise(){
 		currentPolygon.rotateClockwise();
+		boolean collided = false;
+		for (Block b : blocks){
+			b.updateBounds();
+			for (Block b2 : currentPolygon.getBlocks()){
+				if (b.getBounds().overlaps(b2.getBounds())){
+					collided = true;
+				}
+			}
+		}
+		if (collided) currentPolygon.rotateCounterClockwise();
 	}
 	
 	public void rotateCounterClockwise(){
 		currentPolygon.rotateCounterClockwise();
+		boolean collided = false;
+		for (Block b : blocks){
+			b.updateBounds();
+			for (Block b2 : currentPolygon.getBlocks()){
+				if (b.getBounds().overlaps(b2.getBounds())){
+					collided = true;
+				}
+			}
+		}
+		if (collided) currentPolygon.rotateClockwise();
 	}
 	
 	public void enterKey(String key){

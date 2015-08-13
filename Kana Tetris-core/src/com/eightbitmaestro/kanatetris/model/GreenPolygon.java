@@ -44,8 +44,31 @@ public class GreenPolygon extends Polygon{
 
 	@Override
 	public void rotateCounterClockwise() {
-		// TODO Auto-generated method stub
-		
+		if (rotation==1){
+			moveBlock(1,0,2);
+			moveBlock(2,-1,1);
+			moveBlock(3,-1,-1);
+			rotation=0;
+		}
+		else if(rotation==2){
+			moveBlock(0,0,1);
+			moveBlock(1,0,-1);
+			moveBlock(2,1,0);
+			moveBlock(3,1,2);
+			rotation=1;
+		}
+		else if(rotation==3){
+			moveBlock(1,2,0);
+			moveBlock(3,0,-2);
+			rotation=2;
+		}
+		else if(rotation==0){
+			moveBlock(0,0,-1);
+			moveBlock(1,-2,-1);
+			moveBlock(2,0,-1);
+			moveBlock(3,0,1);
+			rotation=3;
+		}
 	}
 
 }

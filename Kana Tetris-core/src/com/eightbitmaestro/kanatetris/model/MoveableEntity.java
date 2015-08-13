@@ -22,4 +22,9 @@ public class MoveableEntity extends Entity{
 		bounds.x = position.x+(width/4);
 		bounds.y = position.y+(height/4);
 	}
+	
+	public void updateBounds(){
+		bounds.x = position.x+(width/4);
+		bounds.y = position.y+(height/4);
+	}
 }
