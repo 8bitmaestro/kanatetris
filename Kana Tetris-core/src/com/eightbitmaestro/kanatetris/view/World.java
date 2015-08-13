@@ -102,25 +102,25 @@ public class World {
 			//hiragana
 			if (i==2){
 				menuButtons.add(new Rectangle(Gdx.graphics.getWidth()*.5f,Gdx.graphics.getHeight()-(Gdx.graphics.getHeight()*0.66f)+tetrisUnit,
-					standardWidth*2,standardWidth));
+					standardWidth*4,standardWidth));
 				continue;
 			}
 			//katakana
 			if (i==3){
 				menuButtons.add(new Rectangle(Gdx.graphics.getWidth()*.5f,Gdx.graphics.getHeight()-(Gdx.graphics.getHeight()*0.9f)+tetrisUnit,
-						standardWidth*2,standardWidth));
+						standardWidth*4,standardWidth));
 					continue;
 			}
 			//menuButtons.add(new Rectangle(Gdx.graphics.getWidth()*.25f*i-Gdx.graphics.getWidth()*0.1f,Gdx.graphics.getHeight()-(Gdx.graphics.getHeight()*0.24f),
 			//		standardWidth*2,standardWidth));
 			//mode
 			menuButtons.add(new Rectangle(Gdx.graphics.getWidth()*.5f,-Gdx.graphics.getHeight()*0.15f+tetrisUnit,
-					standardWidth*2,standardWidth));
+					standardWidth*4,standardWidth));
 			
 		}
 		//menuButtons.add(new Rectangle(Gdx.graphics.getWidth()/2-standardWidth, 0, standardWidth*2,standardWidth));
 		menuButtons.add(new Rectangle(Gdx.graphics.getWidth()*.5f,Gdx.graphics.getHeight()-(Gdx.graphics.getHeight()*0.45f)+tetrisUnit,
-				standardWidth*2,standardWidth));
+				standardWidth*4,standardWidth));
 		for(int i =1; i <4; i++){
 			menuButtons.add(new Rectangle(Gdx.graphics.getWidth()*.25f*i-Gdx.graphics.getWidth()*0.1f,Gdx.graphics.getHeight()/2,standardWidth*2,standardWidth));
 		}

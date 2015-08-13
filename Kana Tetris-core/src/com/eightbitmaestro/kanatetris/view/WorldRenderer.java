@@ -267,14 +267,14 @@ public class WorldRenderer {
 				//System.out.println(hiragana);
 				
 				font.draw(levelBatch, "Current kana: ", world.getScoreBox().x*standardWidth+8, world.getScoreBox().y*standardWidth+world.getScoreBox().height*standardWidth*0.75f+standardWidth);
-				if (hiragana && currentKana!=null){ 
-					levelBatch.draw(standardHiraganaRegions[indexToDraw], world.getScoreBox().x*standardWidth+8+(font.getBounds("CurrentKana").width)+18,
-						world.getScoreBox().y*standardWidth+world.getScoreBox().height*standardWidth*0.723125f+standardWidth, 50,50);
-					
-				}
-				else if (currentKana!=null) 
-					levelBatch.draw(standardKatakanaRegions[indexToDraw], world.getScoreBox().x*standardWidth+8+(font.getBounds("CurrentKana").width)+18,
-							world.getScoreBox().y*standardWidth+world.getScoreBox().height*standardWidth*0.723125f+standardWidth, 50,50);
+//				if (hiragana && currentKana!=null){ 
+//					levelBatch.draw(standardHiraganaRegions[indexToDraw], world.getScoreBox().x*standardWidth+8+(font.getBounds("CurrentKana").width)+18,
+//						world.getScoreBox().y*standardWidth+world.getScoreBox().height*standardWidth*0.723125f+standardWidth, 50,50);
+//					
+//				}
+//				if (currentKana!=null) 
+//					levelBatch.draw(standardKatakanaRegions[indexToDraw], world.getScoreBox().x*standardWidth+8+(font.getBounds("CurrentKana").width)+18,
+//							world.getScoreBox().y*standardWidth+world.getScoreBox().height*standardWidth*0.723125f+standardWidth, 50,50);
 				font.draw(levelBatch, "Congratulation!", 
 						world.getScoreBox().x*standardWidth+8, world.getScoreBox().y*standardWidth+world.getScoreBox().height*standardWidth*0.75f);
 				font.draw(levelBatch, "Number of rows cleared: " + Integer.toString(world.getNumRowsCleared()), 
@@ -422,16 +422,22 @@ public class WorldRenderer {
 					levelBatch.draw(standardKatakanaRegions[indexToDraw], world.getScoreBox().x*standardWidth+8+(font.getBounds("CurrentKana").width)+18,
 							world.getScoreBox().y*standardWidth+world.getScoreBox().height*standardWidth*0.723125f+standardWidth, standardWidth,standardWidth);
 					//endless/classic, hiragana
-				else if (!world.tutorMode && hiragana)
-					levelBatch.draw(standardHiraganaRegions[indexToDraw], world.getScoreBox().x*standardWidth+8+(font.getBounds("CurrentKana").width)+18,
+				else if (!world.tutorMode && hiragana){
+						levelBatch.draw(standardHiraganaRegions[indexToDraw], world.getScoreBox().x*standardWidth+8+(font.getBounds("CurrentKana").width)+18,
 							world.getScoreBox().y*standardWidth+world.getScoreBox().height*standardWidth*0.723125f+standardWidth, standardWidth,standardWidth);
-					//TODO if dakuten, draw " thingy
+						if (combination) levelBatch.draw(standardHiraganaRegions[subIndexToDraw], world.getScoreBox().x*standardWidth+8+(font.getBounds("CurrentKana").width)+18+standardWidth,
+								world.getScoreBox().y*standardWidth+world.getScoreBox().height*standardWidth*0.723125f+standardWidth, standardWidth/2, standardWidth/2);
+				}
+						//TODO if dakuten, draw " thingy
 					//endless/classic, katakana
 				else if (!world.tutorMode && !hiragana){
 					levelBatch.draw(standardKatakanaRegions[indexToDraw], world.getScoreBox().x*standardWidth+8+(font.getBounds("CurrentKana").width)+18,
 							world.getScoreBox().y*standardWidth+world.getScoreBox().height*standardWidth*0.723125f+standardWidth, standardWidth,standardWidth);
-					//TODO if dakuten, draw " thingy
+					if (combination) levelBatch.draw(standardKatakanaRegions[subIndexToDraw], world.getScoreBox().x*standardWidth+8+(font.getBounds("CurrentKana").width)+18+standardWidth,
+							world.getScoreBox().y*standardWidth+world.getScoreBox().height*standardWidth*0.723125f+standardWidth, standardWidth/2, standardWidth/2);
 				}
+				if (dakuten) font.draw(levelBatch, "\"", world.getScoreBox().x*standardWidth+8+(font.getBounds("CurrentKana").width)+18+standardWidth,
+						world.getScoreBox().y*standardWidth+world.getScoreBox().height*standardWidth*0.723125f+standardWidth+standardWidth);
 				if (currentTutorKana!=null && currentKana.equals(currentTutorKana) && world.tutorModeKanaCount<3){
 					font.draw(levelBatch, "("+currentTutorKana.substring(2)+")", world.getScoreBox().x*standardWidth+8+(font.getBounds("CurrentKana").width)+70,
 							world.getScoreBox().y*standardWidth+world.getScoreBox().height*standardWidth*0.723125f+110);
